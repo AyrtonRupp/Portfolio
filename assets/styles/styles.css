@@ -670,6 +670,8 @@ footer {
   border-radius: 8px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
+  position: relative;
+  background-color: white;
 }
 
 .project-item:nth-child(even) {
@@ -677,11 +679,45 @@ footer {
 }
 
 .project-image {
-  width: 100%;
-  max-width: 400px;
   object-fit: cover;
   height: 100%;
+  position:absolute ;
+  mask-image: linear-gradient(to left, #000, 60%, #0000);
+ 
 }
+
+.project-image2 {
+  object-fit: cover;
+  height: 100%;
+  position:absolute ;
+  mask-image: linear-gradient(to right, #000, 60%, #0000);
+ 
+}
+
+.reverse-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Alinear todo el contenido al lado derecho */
+  text-align: right; /* Alinear el texto hacia la derecha */
+  padding-left: 20px; /* Ajustar espacio entre imagen y contenido */
+}
+
+.reverse-content h3 {
+  text-align: right; /* Aseguramos que el título esté alineado */
+}
+
+.reverse-content p {
+  text-align: right; /* El párrafo se alinea hacia la derecha */
+}
+
+.reverse-content .project-buttons {
+  justify-content: flex-end; /* Botones alineados a la derecha */
+}
+
+.reverse-content .project-technologies {
+  justify-content: flex-end; /* Íconos tecnológicos alineados al lado derecho */
+}
+
 
 .project-details {
   flex: 1;
@@ -698,6 +734,7 @@ footer {
   font-size: 1rem;
   color: var(--dark-color-alt);
   margin-bottom: 20px;
+  max-width: 40%;
 }
 
 .project-buttons {
@@ -750,16 +787,73 @@ footer {
 @media (max-width: 768px) {
   .project-item {
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
   }
 
-  .project-item:nth-child(even) {
-    flex-direction: column;
+  .project-image, 
+  .project-image2 {
+    order: -1; /* Mover imágenes al inicio */
+    width: 100%;
+    height: auto;
+    position: static;
+    mask-image: none;
   }
 
-  .project-image {
-    max-width: 100%;
+  .project-details {
+    flex: 1;
+    padding: 15px;
+    max-width: 100%; /* Ocupa todo el ancho */
+    margin-bottom: 20px; /* Añadir espacio debajo del contenido */
+  }
+
+  .project-details p {
+    font-size: 0.9rem;
+    color: var(--dark-color-alt);
+    line-height: 1.5; /* Mejorar legibilidad */
+    word-wrap: break-word; /* Permitir que las palabras largas se dividan */
+    max-width: 100%; /* Ajustar al ancho completo */
+    margin-bottom: 20px; /* Espacio adicional al final */
+    text-align: center;
+  }
+
+  .project-buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px; /* Espacio entre botones y contenido */
+  }
+
+  .project-technologies {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .reverse-content {
+    align-items: center;
+    text-align: center;
+    padding: 0;
+  }
+
+  .reverse-content .project-buttons {
+    justify-content: center;
+  }
+
+  .icon-item-pj {
+    width: 50px;
+    height: 50px;
+  }
+
+  .icon-item-pj i {
+    font-size: 1.5rem;
+  }
+
+  .icon-item-pj img {
+    max-width: 30px;
   }
 }
+
 
 .project-icons {
   margin: 20px 0;
@@ -836,4 +930,8 @@ footer {
 body {
   scrollbar-width: thin; /* Define la barra como delgada */
   scrollbar-color: var(--first-color) var(--dark-color-alt); /* Define el color del thumb y el track */
+}
+
+html {
+  scroll-behavior: smooth;
 }
