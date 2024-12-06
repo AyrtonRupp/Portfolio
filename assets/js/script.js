@@ -61,3 +61,32 @@ const form = document.getElementById('contactForm');
     closeModal.addEventListener('click', function () {
         modal.classList.remove('show');
     });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Ajuste de desplazamiento para las secciones
+      const offset = 50; // Cambiá este valor según la altura que quieras ajustar
+      const adjustScroll = (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+          const topPosition = element.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({
+            top: topPosition,
+            behavior: "smooth",
+          });
+        }
+      };
+    
+      // Interceptar clicks en los enlaces
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+          const targetId = anchor.getAttribute("href").substring(1);
+          if (targetId === "projects" || targetId === "tecno") {
+            e.preventDefault();
+            adjustScroll(targetId);
+          }
+        });
+      });
+    });
+    
+    
+    
